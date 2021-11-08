@@ -15,6 +15,7 @@ library(GGally)
 library(broom)
 library(kableExtra)
 library(modelsummary)
+library(stargazer)
 ```
 
 ## Intro to ggpairs
@@ -107,5 +108,28 @@ If everything else is the same, then we expect a male penguin to weigh on averag
 
 ```{r}
 augment(penguin_lm_2)
+```
+
+## Use plot() to look at model diagnostics 
+
+```{r}
+plot(penguin_lm_2)
+```
+
+- Conceptual understanding and expertise allows me to responsibly determine that penguin species, sex, and flipper length are reasonable predictor variable (make sure you're thinking hard about variables and different variable combinations)
+- Diagnostic plots all check out for normality of residuals, homoscedasticity, and no worrisome outliers (<< last one not an assumption)
+
+
+## Make output tables
+
+Using modelsummary
+```{r}
+modelsummary(penguin_lm_2) 
+```
+
+Using stargazer:
+
+```{r, results = "asis"}
+stargazer(penguin_lm_2, type = "html")
 ```
 
